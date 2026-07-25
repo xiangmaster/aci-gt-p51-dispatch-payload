@@ -1,0 +1,14 @@
+name: Ground Truth P51-E08
+on:
+  workflow_dispatch:
+permissions:
+  actions: write
+jobs:
+  fixture:
+    runs-on: ubuntu-latest
+    if: ${{ false }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      AGENT_OUTPUT: ground-truth-agent-output
+    steps:
+      - run: gh api --method POST "repos/${{ github.repository }}/dispatches" -f event_type=agent-output -F client_payload[output]="$AGENT_OUTPUT"
